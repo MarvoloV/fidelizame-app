@@ -1,7 +1,16 @@
 import Head from "next/head";
+import { useState } from "react";
 import { Layout } from "../layouts";
+import { useZxing } from "react-zxing";
 
 export default function Home() {
+  const [result, setResult] = useState("No result");
+  const { ref } = useZxing({
+    onResult(result) {
+      setResult(result.getText());
+    },
+  });
+
   return (
     <div>
       <Head>
@@ -10,7 +19,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout title="Home Page">
-        <h1>hola</h1>
+        <video ref={ref} />
+        <p>
+          <span>Last result:</span>
+          <span>{result}</span>
+        </p>
       </Layout>
       <footer></footer>
     </div>
