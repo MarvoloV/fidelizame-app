@@ -13,18 +13,17 @@ const User: NextPage = () => {
   const [tabActiveClient, settabActiveClient] = useState("exchange");
   const dispatch = useDispatch();
   const { blockchain, data } = useSelector((state) => state);
-  console.log("🚀 ~ file: user.tsx ~ line 16 ~ data", data);
   // console.log({ blockchain, data });
 
   //-----------------------------------Boton Tx----------------------------------------
 
   //Boton TRANSFERENCIA
   const handleButtonTx = async () => {
-    const accountCajero = await blockchain.accountCajero;
-    const accountUser = await blockchain.accountUser;
+    const accountCajero = blockchain.accountCajero;
+    const accountUser = blockchain.accountUser;
 
     // console.log(blockchain.web3.utils)
-    const TxTokes = await blockchain.smartContract.methods
+    const TxTokes = await blockchain.smartContract
       .transfer(accountUser, cantidad)
       .send({ from: accountCajero });
     await TxTokes;
@@ -101,7 +100,7 @@ const User: NextPage = () => {
                   alt="point"
                 />
               </figure>
-              <p className="font-semibold text-lg">{data.tokensCajero} Pts</p>
+              {/* <p className="font-semibold text-lg">{data.tokensCajero} Pts</p> */}
               <div className="flex items-center">
                 {/* <p className="font-normal text-sm text-black/50">
                   Hasta 23/10/2022

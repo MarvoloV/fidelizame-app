@@ -1,8 +1,3 @@
-// @ts-ignore
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import Web3EthContract from "web3-eth-contract";
-import Web3 from "web3";
-import store from "../store";
 import contratoNegocio from "../../abis/NegocioFidelizado.json";
 import { fetchData } from "../data/dataActions";
 import { ethers } from "ethers";
@@ -26,7 +21,16 @@ const connectFailed = (payload: string) => {
     payload,
   };
 };
-
+export const addUser = (payload: string) => {
+  console.log(
+    "🚀 ~ file: blockchainActions.ts ~ line 25 ~ addUser ~ payload",
+    payload
+  );
+  return {
+    type: "SAVE_USER",
+    payload,
+  };
+};
 //conexion con metamask y la blockchain
 export const connect = () => {
   return async (dispatch: (arg0: { type: string; payload?: any }) => void) => {
@@ -113,4 +117,7 @@ export const connect = () => {
 
     // console.log( store.getState().blockchain.smartContract.methods)
   };
+};
+export const saveUser = (accountUser: string) => (dispatch) => {
+  dispatch(addUser(accountUser));
 };

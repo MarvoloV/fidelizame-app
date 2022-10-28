@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Layout } from "../layouts";
 import { useZxing } from "react-zxing";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { connect } from "../redux/blockchain/blockchainActions";
+import { useDispatch, useSelector } from "react-redux";
+import { saveUser } from "../redux/blockchain/blockchainActions";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -12,17 +12,23 @@ export default function Cajero() {
   const dispatch = useDispatch();
   const router = useRouter();
   const [result, setResult] = useState("No result");
+  const [isViewScan, setisViewScan] = useState(true);
   const { ref } = useZxing({
     onResult(result) {
       setResult(result.getText());
+      setisViewScan(false);
+      dispatch(saveUser(result.getText()));
+      router.push("/cliente/user");
     },
   });
+  const { blockchain } = useSelector((state) => state);
+  console.log("🚀 ~ file: qr.tsx ~ line 23 ~ Cajero ~ blockchain", blockchain);
 
   return (
     <div>
       <Layout title="Home Page">
         <div className="flex flex-col items-center">
-          <video ref={ref} className="p-10" />
+          {isViewScan && <video ref={ref} className="p-10" />}
 
           <p>
             <span>Last result:</span>

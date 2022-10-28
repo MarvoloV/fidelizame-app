@@ -42,8 +42,8 @@ export default function Home() {
           <button
             className="text-white bg-black rounded-md p-2 mt-16"
             onClick={async () => {
-              await dispatch(connect());
-              // router.push("/cajero");
+              dispatch(connect());
+              router.push("/cajero");
             }}
           >
             Conectar Wallet

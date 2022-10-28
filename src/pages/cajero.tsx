@@ -1,15 +1,18 @@
-import Head from "next/head";
 import { useState } from "react";
 import { Layout } from "../layouts";
 import { useZxing } from "react-zxing";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { connect } from "../redux/blockchain/blockchainActions";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function Cajero() {
   const dispatch = useDispatch();
+  const { accountCajero } = useSelector((state) => state.blockchain);
+  console.log(
+    "🚀 ~ file: cajero.tsx ~ line 12 ~ Cajero ~ accountCajero",
+    accountCajero
+  );
   const router = useRouter();
   const [result, setResult] = useState("No result");
   const { ref } = useZxing({
@@ -33,7 +36,7 @@ export default function Cajero() {
             </figure>
             <div className="pl-5">
               <p className="font-bold text-xl">CAJERO: ADOLFO LLANOS</p>
-              <p className="text-base">ID: 123456</p>
+              <p className="text-base">ID: {accountCajero}</p>
             </div>
           </div>
           {/* 
@@ -63,7 +66,10 @@ export default function Cajero() {
             />
           </figure>
 
-          <Link href={"/qr"} className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white">          
+          <Link
+            href={"/qr"}
+            className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white"
+          >
             <figure className="pr-2">
               <Image
                 src="/images/ion_qr-code-sharp.svg"
