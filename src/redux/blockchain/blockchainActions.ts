@@ -1,9 +1,10 @@
+// @ts-ignore
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Web3EthContract from "web3-eth-contract";
-// import Web3 from "web3";
-// import store from "../store";
-// import contrato_loteria from '../../abis/loteria.json'
-// import { fetchData } from "../data/dataActions";
+import Web3 from "web3";
+import store from "../store";
+import contratoNegocio from "../../abis/NegocioFidelizado.json";
+import { fetchData } from "../data/dataActions";
 
 const connectRequest = () => {
   return {
@@ -28,6 +29,7 @@ const connectFailed = (payload: string) => {
 //conexion con metamask y la blockchain
 export const connect = () => {
   return async (dispatch: (arg0: { type: string; payload?: any }) => void) => {
+    // return async (dispatch) => {
     try {
       if (window?.ethereum) {
         // running on client and window + ethereum is avail
@@ -36,29 +38,69 @@ export const connect = () => {
         const { ethereum } = window;
         // console.log('ethereum:', ethereum)
         const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
+        
 
         if (metamaskIsInstalled) {
+
+          
+
           try {
-            const accounts = await ethereum.request({
+            const accountCajero = await ethereum.request({
               method: "eth_requestAccounts",
             });
-            console.log("Account:", accounts[0]);
+            console.log("Account:", accountCajero[0]);
 
             const networkId = await ethereum.request({
               method: "net_version",
             });
-            // console.log('networkid:', networkId)
+            console.log('networkid:', networkId)
 
-            // const networkData = contrato_loteria.networks[networkId]
-            // console.log('NetworkData:', networkData)
-            dispatch(
-              connectSuccess({
-                account: accounts[0],
-                // web3: web3,
-                // smartContract: SmartContractObj,
-                // owner,
-              })
-            );
+            const networkData = contratoNegocio.networks[networkId];
+            console.log('NetworkData:', networkData)
+            if (networkData) {
+              // @ts-ignore
+              const abi = contratoNegocio.abi;
+              console.log('abi', abi)
+              const address = networkData.address;
+              console.log("address:", address);
+              
+              
+              Web3EthContract.setProvider(ethereum);//DUDA
+              const web3 = new Web3(ethereum);
+              console.log('web3', web3);
+
+
+              const smartContract = new web3.eth.Contract(abi, address);
+              console.log("SmartContract:", smartContract);
+              //precio de los boletos
+              // const owner = SmartContractObj.methods.owner()
+
+              dispatch(
+                connectSuccess({
+                  accountCajero,
+                  accountUser,
+                  smartContract
+                  // web3: web3,
+                  // owner,
+                })
+              );
+
+              // Add listeners start
+              // ethereum.on("accountsChanged", (accounts) => {
+              //   dispatch(updateAccount(accounts[0]));
+              // });
+
+              //get Valor
+              dispatch(fetchData());
+
+              ethereum.on("chainChanged", () => {
+                window.location.reload();
+              });
+              // Add listeners end
+            } else {
+              dispatch(connectFailed("Change network to BSC."));
+              console.log("Change network to");
+            }
           } catch (err) {
             dispatch(connectFailed("Something went wrong."));
             console.log("Something went wrong");

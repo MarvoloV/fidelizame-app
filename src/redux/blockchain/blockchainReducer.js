@@ -1,8 +1,9 @@
 const initialState = {
   loading: false,
-  account: null,
-  // smartContract: [],
   // web3: null,
+  accountCajero: null,
+  accountUser: null,
+  smartContract: null,
   // owner:'',
   errorMsg: "",
 };
@@ -18,8 +19,9 @@ const blockchainReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        account: action.payload.account,
-        // smartContract:action.payload.smartContract,
+        accountCajero: action.payload.accountCajero,
+        accountUser: action.payload.accountUser,
+        smartContract:action.payload.smartContract,
         // web3: action.payload.web3,
         // owner: action.payload.owner,
       };

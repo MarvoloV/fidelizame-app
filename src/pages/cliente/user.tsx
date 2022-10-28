@@ -1,18 +1,47 @@
+// @ts-ignore
 import { NextPage } from "next";
 import Image from "next/image";
 import React, { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { Layout } from "../../layouts";
 
+import { useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../../redux/data/dataActions";
+
+
+
 const User: NextPage = () => {
   const [tabActive, setTabActive] = useState("grant");
+  const [cantidad, setCantidad] = useState(120);
+
+  const dispatch = useDispatch();
+  const { blockchain, data } = useSelector((state) => state);
+  console.log({ blockchain, data });
+
+  //-----------------------------------Boton Tx----------------------------------------
+
+  //Boton TRANSFERENCIA
+  const handleButtonTx = async () => {
+    const accountCajero = await blockchain.accountCajero;
+    const accountUser = await blockchain.accountUser;
+    
+    // console.log(blockchain.web3.utils)
+    const TxTokes = await blockchain.smartContract.methods
+      .transfer(accountUser, cantidad)
+      .send({ from: accountCajero });
+    await TxTokes;
+
+    dispatch(fetchData());
+    setCantidad("");
+  };
+
   return (
     <Layout title="Home Page">
       <div className="flex flex-col items-center ">
         <div className="flex w-full justify-center mt-5 mb-5">
           <div>
             <p className="font-bold text-xl">CAJERO: ADOLFO LLANOS</p>
-            <p className="text-xs text-center">ID: 123456</p>
+            <p className="text-xs text-center">ID: {blockchain.accountCajero}</p>
           </div>
         </div>
         <button className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white">
@@ -55,7 +84,7 @@ const User: NextPage = () => {
               />
             </figure>
             <h2 className="text-2xl font-bold">Gustavo Medrano</h2>
-            <p className="text-sm font-normal">ID 123-4556</p>
+            <p className="text-sm font-normal">ID: {blockchain.accountUser}</p> 
             <p className="text-gold rounded-xl bg-gold/10 px-4 py-2 mt-3 font-semibold ">
               Cliente Oro
             </p>
@@ -72,7 +101,7 @@ const User: NextPage = () => {
                   alt="point"
                 />
               </figure>
-              <p className="font-semibold text-lg">1000 Pts</p>
+              <p className="font-semibold text-lg">{data.tokensCajero} Pts</p>
               <div className="flex items-center">
                 {/* <p className="font-normal text-sm text-black/50">
                   Hasta 23/10/2022
@@ -121,6 +150,7 @@ const User: NextPage = () => {
                 <button
                   className="flex items-center bg-primary text-white font-semibold px-1 rounded-md h-10 mt-1"
                   disabled={false}
+                  onClick={handleButtonTx}
                 >
                   Otorgar Puntos
                 </button>
