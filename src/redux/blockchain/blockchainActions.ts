@@ -5,6 +5,7 @@ import Web3 from "web3";
 import store from "../store";
 import contratoNegocio from "../../abis/NegocioFidelizado.json";
 import { fetchData } from "../data/dataActions";
+import { ethers } from "ethers";
 
 const connectRequest = () => {
   return {
@@ -36,52 +37,43 @@ export const connect = () => {
         dispatch(connectRequest());
 
         const { ethereum } = window;
-        // console.log('ethereum:', ethereum)
+
         const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
-        
+        console.log(
+          "🚀 ~ file: blockchainActions.ts ~ line 41 ~ //return ~ metamaskIsInstalled",
+          metamaskIsInstalled
+        );
 
         if (metamaskIsInstalled) {
-
-          
-
           try {
-            const accountCajero = await ethereum.request({
-              method: "eth_requestAccounts",
-            });
-            console.log("Account:", accountCajero[0]);
+            const provider = new ethers.providers.Web3Provider(ethereum);
+            const accountCajero = await provider.send(
+              "eth_requestAccounts",
+              []
+            );
+            // const accountCajero = await ethereum.request({
+            //   method: "eth_requestAccounts",
+            // });
+            // console.log("Account:", accountCajero[0]);
 
             const networkId = await ethereum.request({
               method: "net_version",
             });
-            console.log('networkid:', networkId)
+            console.log("networkid:", networkId);
 
             const networkData = contratoNegocio.networks[networkId];
-            console.log('NetworkData:', networkData)
+            console.log("NetworkData:", networkData);
             if (networkData) {
-              // @ts-ignore
               const abi = contratoNegocio.abi;
-              console.log('abi', abi)
+              console.log("abi", abi);
               const address = networkData.address;
               console.log("address:", address);
-              
-              
-              Web3EthContract.setProvider(ethereum);//DUDA
-              const web3 = new Web3(ethereum);
-              console.log('web3', web3);
-
-
-              const smartContract = new web3.eth.Contract(abi, address);
-              console.log("SmartContract:", smartContract);
-              //precio de los boletos
-              // const owner = SmartContractObj.methods.owner()
+              const smartContract = new ethers.Contract(address, abi, provider);
 
               dispatch(
                 connectSuccess({
                   accountCajero,
-                  accountUser,
-                  smartContract
-                  // web3: web3,
-                  // owner,
+                  smartContract,
                 })
               );
 
@@ -93,9 +85,9 @@ export const connect = () => {
               //get Valor
               dispatch(fetchData());
 
-              ethereum.on("chainChanged", () => {
-                window.location.reload();
-              });
+              // ethereum.on("chainChanged", () => {
+              //   window.location.reload();
+              // });
               // Add listeners end
             } else {
               dispatch(connectFailed("Change network to BSC."));

@@ -50,13 +50,13 @@ export default function Home() {
             className="text-white bg-black rounded-md p-2 mt-16"
             onClick={async () => {
               await dispatch(connect());
-              router.push("/cajero");
+              // router.push("/cajero");
             }}
           >
             Conectar Wallet
           </button>
           <Link href={"/registro"} className="text-title">
-          Regístrate como cajero
+            Regístrate como cajero
           </Link>
         </div>
 

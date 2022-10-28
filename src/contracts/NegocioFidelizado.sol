@@ -16,8 +16,10 @@ contract NegocioFidelizado is ERC20 {
         string memory name_,
         string memory symbol_,
         uint256 totalSupply_
+    )
         // address direccion_
-    ) ERC20(name_, symbol_, totalSupply_, msg.sender) {
+        ERC20(name_, symbol_, totalSupply_, msg.sender)
+    {
         _addNegocio = address(this);
         _NombreDelNegocio = name_;
         _totalSupply = totalSupply_;
@@ -124,5 +126,4 @@ contract NegocioFidelizado is ERC20 {
     }
 
     //transfer
-    
 }

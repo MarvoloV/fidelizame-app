@@ -1,4 +1,3 @@
-// @ts-ignore
 import store from "../store";
 
 const fetchDataRequest = () => {
@@ -25,29 +24,18 @@ export const fetchData = () => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     try {
-      // console.log(store.getState().blockchain.account) 
+      console.log(store.getState().blockchain);
       // const tokensContract = await store.getState().blockchain.smartContract.methods.TokensDisponibles().call();
-      const tokensCajero = await store.getState().blockchain.smartContract.methods.balanceOf(store.getState().blockchain.accountCajero).call();
-      const tokensUser = await store.getState().blockchain.smartContract.methods.balanceOf(store.getState().blockchain.accountUser).call();
-      // const numDeBoletos = await store.getState().blockchain.smartContract.methods.NumDeBoletos(store.getState().blockchain.account).call();
-      // const bote = await store.getState().blockchain.smartContract.methods.Bote().call();
-      // const ganador = await store.getState().blockchain.smartContract.methods.direccion_ganador().call();
-      // const owner = await store.getState().blockchain.smartContract.methods.owner().call();
-      // // await console.log(owner)
-      // await console.log(misTokens)
-      // console.log(misBoletos)
-      // console.log( store.getState().blockchain.smartContract.methods)
-      
+      const tokensCajero = await store
+        .getState()
+        .blockchain.smartContract.SaldoNegocio // store.getState().blockchain.accountCajero
+        .call();
+      // const tokensUser = await store.getState().blockchain.smartContract.methods.balanceOf(store.getState().blockchain.accountUser).call();
       dispatch(
         fetchDataSuccess({
           tokensCajero,
-          tokensUser
-          // numDeBoletos,
-          // bote,
-          // ganador,
-          // owner,
+          // tokensUser,
         })
-
       );
     } catch (err) {
       console.log(err);

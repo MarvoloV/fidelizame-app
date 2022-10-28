@@ -19,9 +19,8 @@ const blockchainReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        accountCajero: action.payload.accountCajero,
-        accountUser: action.payload.accountUser,
-        smartContract:action.payload.smartContract,
+        accountCajero: action.payload.accountCajero[0],
+        smartContract: action.payload.smartContract,
         // web3: action.payload.web3,
         // owner: action.payload.owner,
       };
