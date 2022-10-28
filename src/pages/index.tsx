@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { connect } from "../redux/blockchain/blockchainActions";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -49,11 +50,14 @@ export default function Home() {
             className="text-white bg-black rounded-md p-2 mt-16"
             onClick={async () => {
               await dispatch(connect());
-              router.push("/cajero");
+              router.push("/registro");
             }}
           >
-            Conectar a Wallet
+            Conectar Wallet
           </button>
+          <Link href={"/registro"} className="text-title">
+          Regístrate como cajero
+          </Link>
         </div>
 
         {/* <video ref={ref} />
