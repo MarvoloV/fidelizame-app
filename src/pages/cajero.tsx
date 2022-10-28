@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { connect } from "../redux/blockchain/blockchainActions";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function Cajero() {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export default function Cajero() {
   return (
     <div>
       <Layout title="Home Page">
-        <div className="flex flex-col items-center ">
+        <div className="flex flex-col items-center">
           <div className="flex w-full justify-center mt-20 mb-32">
             <figure className="flex items-center">
               <Image
@@ -35,7 +36,7 @@ export default function Cajero() {
               <p className="text-base">ID: 123456</p>
             </div>
           </div>
-
+          {/* 
           <figure className="flex justify-center">
             <Image
               src="/images/Portrait.png"
@@ -44,8 +45,9 @@ export default function Cajero() {
               alt="user"
             />
           </figure>
+          */}
         </div>
-        {/* <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center pb-20">
           <p className="font-bold text-4xl mt-7 mb-12">Busca un cliente</p>
           <p className="text-base px-12 text-center mb-16">
             Escanea el QR del cliente para otorgarle puntos e informarle de sus
@@ -60,7 +62,8 @@ export default function Cajero() {
               alt="user"
             />
           </figure>
-          <button className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white">
+
+          <Link href={"/qr"} className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white">          
             <figure className="pr-2">
               <Image
                 src="/images/ion_qr-code-sharp.svg"
@@ -70,8 +73,8 @@ export default function Cajero() {
               />
             </figure>
             Escanear Cliente
-          </button>
-        </div> */}
+          </Link>
+        </div>
 
         {/* <video ref={ref} />
         <p>
