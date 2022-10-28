@@ -21,13 +21,17 @@ export default function Cajero() {
   return (
     <div>
       <Layout title="Home Page">
+        <div className="flex flex-col items-center">
+          <video ref={ref} className="p-10" />
 
-        <video ref={ref} />
-        <p>
-          <span>Last result:</span>
-          <span>{result}</span>
-        </p>
-        <Link href={"/otorgar-puntos"} className="w-48 flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white">          
+          <p>
+            <span>Last result:</span>
+            <span>{result}</span>
+          </p>
+          <Link
+            href={"/cliente/user"}
+            className="w-48 flex items-center justify-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white"
+          >
             <figure className="pr-2">
               <Image
                 src="/images/ion_qr-code-sharp.svg"
@@ -36,8 +40,9 @@ export default function Cajero() {
                 alt="qr icon"
               />
             </figure>
-            Simular QR
-        </Link>
+            <p> Simular QR</p>
+          </Link>
+        </div>
       </Layout>
       <footer></footer>
     </div>

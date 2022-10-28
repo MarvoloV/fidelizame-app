@@ -1,6 +1,7 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import React, { useState } from "react";
+import { RotatingLines } from "react-loader-spinner";
 import { Layout } from "../../layouts";
 
 const User: NextPage = () => {
@@ -61,8 +62,8 @@ const User: NextPage = () => {
             <p className="font-bold text-base mt-4">Fecha de alta</p>
             <p className="font-normal text-sm">10 Mayo 2022</p>
             <div className="h-px w-72 bg-black/10 mt-10 mb-10" />
-            <p className="font-bold text-xl">Puntos acumulados</p>
-            <div className="flex mt-5">
+            <p className="font-bold text-xl">Puntos Disponibles a Distruir</p>
+            <div className="flex  items-center ">
               <figure>
                 <Image
                   src="/images/Medals-gold.svg"
@@ -71,14 +72,14 @@ const User: NextPage = () => {
                   alt="point"
                 />
               </figure>
-              <div>
-                <p className="font-semibold text-lg">1000 Pts</p>
-                <p className="font-normal text-sm text-black/50">
+              <p className="font-semibold text-lg">1000 Pts</p>
+              <div className="flex items-center">
+                {/* <p className="font-normal text-sm text-black/50">
                   Hasta 23/10/2022
-                </p>
+                </p> */}
               </div>
             </div>
-            <p className="font-bold text-xl mt-5">Puntos utilizados</p>
+            {/* <p className="font-bold text-xl mt-5">Puntos utilizados</p>
             <div className="flex mt-5">
               <figure>
                 <Image
@@ -94,7 +95,7 @@ const User: NextPage = () => {
                   el 23/10/2022
                 </p>
               </div>
-            </div>
+            </div> */}
             <div>
               <p className="text-center text-xl font-bold">
                 Compra de hoy 29/10/22
@@ -117,12 +118,80 @@ const User: NextPage = () => {
                   </div>
                 </div>
 
-                <button className="flex items-center bg-primary text-white font-semibold px-1 rounded-md h-10 mt-1">
+                <button
+                  className="flex items-center bg-primary text-white font-semibold px-1 rounded-md h-10 mt-1"
+                  disabled={false}
+                >
                   Otorgar Puntos
                 </button>
               </div>
             </div>
+            <div className="m-5">
+              <RotatingLines
+                strokeColor="Teal"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="96"
+                visible={true}
+              />
+            </div>
+            <div className="flex flex-col items-center">
+              <figure>
+                <Image
+                  src="/images/sending-message.svg"
+                  width={150}
+                  height={126}
+                  alt="icon loading"
+                />
+              </figure>
+              <p className="text-base font-semibold text-center">
+                !Enhorabuena!
+              </p>
+              <p className="px-10 pt-3 pb-10 text-center">
+                Fueron otorgados <b>120 puntos</b> a la billetera de Gustavo
+              </p>
+            </div>
           </div>
+        )}
+        {tabActive === "reward" && (
+          <>
+            <div className="flex flex-col items-center pt-11 ">
+              <figure>
+                <Image
+                  src="/images/Bronze-CertCard.png"
+                  width={80}
+                  height={80}
+                  alt="medalla"
+                />
+              </figure>
+              <h2 className="text-2xl font-bold">Gustavo Medrano</h2>
+              <p className="text-sm font-normal">ID 123-4556</p>
+              <p className="text-gold rounded-xl bg-gold/10 px-4 py-2 mt-3 font-semibold ">
+                Cliente Oro
+              </p>
+              <p className="font-bold text-base mt-4">Fecha de alta</p>
+              <p className="font-normal text-sm">10 Mayo 2022</p>
+              <div className="h-px w-72 bg-black/10 mt-10 mb-10" />
+            </div>
+            <div className="w-full flex justify-center pt-5">
+              <div
+                className={`px-2 text-md font-medium ${
+                  tabActive === "grant" ? "text-primary" : ""
+                }`}
+                onClick={() => setTabActive("grant")}
+              >
+                OTORGAR PUNTOS
+              </div>
+              <div
+                className={`px-2 text-md font-medium ${
+                  tabActive === "reward" ? "text-primary" : ""
+                }`}
+                onClick={() => setTabActive("reward")}
+              >
+                RECOMPENSAS CLIENTE
+              </div>
+            </div>
+          </>
         )}
       </div>
     </Layout>
