@@ -13,6 +13,7 @@ const User: NextPage = () => {
   const [tabActiveClient, settabActiveClient] = useState("exchange");
   const dispatch = useDispatch();
   const { blockchain, data } = useSelector((state) => state);
+  console.log("🚀 ~ file: user.tsx ~ line 16 ~ data", data);
   // console.log({ blockchain, data });
 
   //-----------------------------------Boton Tx----------------------------------------

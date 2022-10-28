@@ -24,12 +24,13 @@ export const fetchData = () => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     try {
-      console.log(store.getState().blockchain);
+      console.log(store.getState().blockchain.accountCajero);
       // const tokensContract = await store.getState().blockchain.smartContract.methods.TokensDisponibles().call();
       const tokensCajero = await store
         .getState()
-        .blockchain.smartContract.SaldoNegocio // store.getState().blockchain.accountCajero
-        .call();
+        .blockchain.smartContract.SaldoGeneral(
+          store.getState().blockchain.accountCajero
+        ); //
       // const tokensUser = await store.getState().blockchain.smartContract.methods.balanceOf(store.getState().blockchain.accountUser).call();
       dispatch(
         fetchDataSuccess({
