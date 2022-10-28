@@ -6,6 +6,7 @@ import { Layout } from "../../layouts";
 
 const User: NextPage = () => {
   const [tabActive, setTabActive] = useState("grant");
+  const [tabActiveClient, settabActiveClient] = useState("exchange");
   return (
     <Layout title="Home Page">
       <div className="flex flex-col items-center ">
@@ -171,26 +172,99 @@ const User: NextPage = () => {
               </p>
               <p className="font-bold text-base mt-4">Fecha de alta</p>
               <p className="font-normal text-sm">10 Mayo 2022</p>
-              <div className="h-px w-72 bg-black/10 mt-10 mb-10" />
             </div>
             <div className="w-full flex justify-center pt-5">
               <div
                 className={`px-2 text-md font-medium ${
-                  tabActive === "grant" ? "text-primary" : ""
+                  tabActiveClient === "exchange" ? "text-primary" : ""
                 }`}
-                onClick={() => setTabActive("grant")}
+                onClick={() => settabActiveClient("exchange")}
               >
-                OTORGAR PUNTOS
+                CANJEAR PUNTOS
               </div>
               <div
                 className={`px-2 text-md font-medium ${
-                  tabActive === "reward" ? "text-primary" : ""
+                  tabActiveClient === "promotion" ? "text-primary" : ""
                 }`}
-                onClick={() => setTabActive("reward")}
+                onClick={() => settabActiveClient("promotion")}
               >
-                RECOMPENSAS CLIENTE
+                PROMOCIONES
               </div>
             </div>
+            {tabActiveClient === "exchange" && (
+              <div className="flex flex-col items-center font-bold text-lg mt-10">
+                <p className="px-14 text-center">
+                  Canjeo de la compra del cliente en puntos
+                </p>
+                <div className="h-px w-72 bg-black/10 mt-10" />
+                <ul className="w-80">
+                  <li className="flex  justify-between">
+                    <div className="flex">
+                      <figure>
+                        <Image
+                          src={"/images/Medals-gold.svg"}
+                          width={60}
+                          height={60}
+                          alt="icon point"
+                        />
+                      </figure>
+                      <div>
+                        <p className="font-semibold">Aceite primor</p>
+                        <p className="font-normal text-xs">S/12.00</p>
+                      </div>
+                    </div>
+                    <p>12 ptos</p>
+                  </li>
+                  <li className="flex justify-between">
+                    <div className="flex">
+                      <figure>
+                        <Image
+                          src={"/images/Medals-gold.svg"}
+                          width={60}
+                          height={60}
+                          alt="icon point"
+                        />
+                      </figure>
+                      <div>
+                        <p className="font-semibold">Paneton Donofrio</p>
+                        <p className="font-normal text-xs">S/36.00</p>
+                      </div>
+                    </div>
+                    <p>36 ptos</p>
+                  </li>
+                  <li className="flex justify-between">
+                    <div className="flex">
+                      <figure>
+                        <Image
+                          src={"/images/Medals-gold.svg"}
+                          width={60}
+                          height={60}
+                          alt="icon point"
+                        />
+                      </figure>
+                      <div>
+                        <p className="font-semibold">Mancuerna</p>
+                        <p className="font-normal text-xs">S/56.00</p>
+                      </div>
+                    </div>
+                    <p>56 ptos</p>
+                  </li>
+                </ul>
+
+                <div className="flex justify-between w-10/12 bg-black/20 px-4 py-4  rounded-3xl">
+                  <div>
+                    <p className="font-semibold text-normal">Canjealo por</p>
+                    <p className="font-normal text-sm text-black/60">
+                      Corresponde a s/104.00
+                    </p>
+                  </div>
+                  <p className="font-semibold text-normal">104 Ptos</p>
+                </div>
+                <button className="flex items-center bg-primary text-white font-semibold px-7 py-3 rounded-md my-10">
+                  Canjear puntos
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>
