@@ -12,14 +12,11 @@ contract NegocioFidelizado is ERC20 {
     uint256 private _totalSupply;
 
     // Constructor del Smart Contract
-    constructor(
+    constructor(// Oxxo POXXO 100000
         string memory name_,
         string memory symbol_,
         uint256 totalSupply_
-    )
-        // address direccion_
-        ERC20(name_, symbol_, totalSupply_, msg.sender)
-    {
+    ) ERC20(name_, symbol_, totalSupply_, msg.sender) {
         _addNegocio = address(this);
         _NombreDelNegocio = name_;
         _totalSupply = totalSupply_;
@@ -44,7 +41,7 @@ contract NegocioFidelizado is ERC20 {
         pure
         returns (uint256)
     {
-        return (5000000000000000000 * numTokens) / (100000);
+        return (5000000000000000000 * numTokens) / (10000000);
         // return (5000 * numTokens) / (100000);
     }
 
@@ -56,7 +53,7 @@ contract NegocioFidelizado is ERC20 {
         UnicamenteaddMaestro(msg.sender)
     {
         // Mayor a 10 tokens
-        require(numTokens >= 10000);
+        // require(numTokens >= 10000);
         require(msg.value == CalculeCostoTokens(numTokens));
         _mint(msg.sender, numTokens);
     }
@@ -109,21 +106,17 @@ contract NegocioFidelizado is ERC20 {
         UnicamenteaddMaestro(msg.sender)
     {
         _cajeros[_addCajero] = cajero(_NombreDelNegocio, 0, true);
-        transfer(_addCajero, 1000);
+        transfer(_addCajero, 100000);
     }
 
-    // Registrar multiples cajeros
-    function RegistroMultipleDeCajeros(address[] memory _addCajeros) public {
-        for (uint8 i = 0; i < _addCajeros.length; i++) {
-            _AsigarCajero(_addCajeros[i]);
-            transfer(_addCajeros[i], 1000);
-        }
+    // Saldo de Puntos 
+    function SaldoGeneral(address address_) public view returns (uint256) {
+        return balanceOf(address_);
     }
 
-    // Puntos del negocio
-    function SaldoNegocio() public view returns (uint256) {
-        return balanceOf(_addMaestro);
+    function transferTokens(address _addCajero, uint amount)
+        public
+    {
+        transfer(_addCajero, amount*100);
     }
-
-    //transfer
 }
