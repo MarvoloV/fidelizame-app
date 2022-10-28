@@ -279,7 +279,7 @@ const User: NextPage = () => {
                   </li>
                 </ul>
 
-                <div className="flex justify-between w-10/12 bg-black/20 px-4 py-4  rounded-3xl">
+                <div className="flex justify-between w-10/12 bg-black/10 px-4 py-4  rounded-3xl">
                   <div>
                     <p className="font-semibold text-normal">Canjealo por</p>
                     <p className="font-normal text-sm text-black/60">
@@ -291,6 +291,36 @@ const User: NextPage = () => {
                 <button className="flex items-center bg-primary text-white font-semibold px-7 py-3 rounded-md my-10">
                   Canjear puntos
                 </button>
+                <div className="flex flex-col items-center">
+                  <figure>
+                    <Image
+                      src="/images/sending-message.svg"
+                      width={150}
+                      height={126}
+                      alt="icon loading"
+                    />
+                  </figure>
+                  <p className="text-base font-semibold text-center">
+                    !Enhorabuena!
+                  </p>
+                  <p className="px-10 pt-3 pb-10 text-center font-normal">
+                    Fueron gastados <b>120 puntos</b> de la billetera de Gustavo
+                  </p>
+                </div>
+              </div>
+            )}
+            {tabActiveClient === "promotion" && (
+              <div className="flex flex-col items-center font-bold text-lg mt-10">
+                <p className="px-14 text-center text-2xl">
+                  Promociones vigentes
+                </p>
+                <p className="font-normal text-center px-16 mt-5 mb-10">
+                  <b>Gustavo</b> por ser cliente Oro, llévate este pack
+                  canjeandolo con <b>500 Ptos</b>
+                </p>
+                {/* <div>
+                  <Image />
+                </div> */}
               </div>
             )}
           </>
