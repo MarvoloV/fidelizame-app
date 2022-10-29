@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+// @ts-ignore
 import contratoNegocio from "../../abis/NegocioFidelizado.json";
 import { fetchData } from "../data/dataActions";
 import { ethers } from "ethers";
@@ -22,10 +25,6 @@ const connectFailed = (payload: string) => {
   };
 };
 export const addUser = (payload: string) => {
-  console.log(
-    "🚀 ~ file: blockchainActions.ts ~ line 25 ~ addUser ~ payload",
-    payload
-  );
   return {
     type: "SAVE_USER",
     payload,
@@ -43,11 +42,6 @@ export const connect = () => {
         const { ethereum } = window;
 
         const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
-        console.log(
-          "🚀 ~ file: blockchainActions.ts ~ line 41 ~ //return ~ metamaskIsInstalled",
-          metamaskIsInstalled
-        );
-
         if (metamaskIsInstalled) {
           try {
             const provider = new ethers.providers.Web3Provider(ethereum);
@@ -55,25 +49,20 @@ export const connect = () => {
               "eth_requestAccounts",
               []
             );
-            // const accountCajero = await ethereum.request({
-            //   method: "eth_requestAccounts",
-            // });
-            // console.log("Account:", accountCajero[0]);
-
             const networkId = await ethereum.request({
               method: "net_version",
             });
-            console.log("networkid:", networkId);
-
             const networkData = contratoNegocio.networks[networkId];
-            console.log("NetworkData:", networkData);
             if (networkData) {
               const abi = contratoNegocio.abi;
-              console.log("abi", abi);
               const address = networkData.address;
-              console.log("address:", address);
-              const smartContract = new ethers.Contract(address, abi, provider);
-
+              const greeterContractWithSigner = new ethers.Contract(
+                address,
+                abi,
+                provider
+              );
+              const signer = provider.getSigner();
+              const smartContract = greeterContractWithSigner.connect(signer);
               dispatch(
                 connectSuccess({
                   accountCajero,
@@ -95,11 +84,11 @@ export const connect = () => {
               // Add listeners end
             } else {
               dispatch(connectFailed("Change network to BSC."));
-              console.log("Change network to");
+              // console.log("Change network to");
             }
           } catch (err) {
             dispatch(connectFailed("Something went wrong."));
-            console.log("Something went wrong");
+            // console.log("Something went wrong");
           }
         } else {
           dispatch(connectFailed("Install Metamask."));
@@ -108,12 +97,7 @@ export const connect = () => {
         // you are on the server.
         // OR user does not have a broswer wallet - i.e. metamask
       }
-    } catch (error) {
-      console.log(
-        "🚀 ~ file: blockchainActions.ts ~ line 107 ~ return ~ error",
-        error
-      );
-    }
+    } catch (error) {}
 
     // console.log( store.getState().blockchain.smartContract.methods)
   };

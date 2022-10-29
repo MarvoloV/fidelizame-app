@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+// @ts-ignore
 import Head from "next/head";
-import { useState } from "react";
 import { Layout } from "../layouts";
-import { useZxing } from "react-zxing";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { connect } from "../redux/blockchain/blockchainActions";
 import { useRouter } from "next/router";
 import Link from "next/link";
