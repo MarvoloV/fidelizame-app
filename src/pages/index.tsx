@@ -21,7 +21,7 @@ export default function Home() {
       <Layout title="Home Page">
         <div className="flex flex-col items-center ">
           <div className="flex w-full justify-center mt-12">
-            <h1 className="text-3xl pr-2">Hola</h1>
+            <h1 className="text-4xl font-bold pr-2">Hola</h1>
             <Image
               src="/images/emojione_hand.png"
               width={30}
@@ -41,13 +41,13 @@ export default function Home() {
             />
           </figure>
           <button
-            className="text-white bg-black rounded-md p-2 mt-16"
+            className="text-white bg-black rounded-md p-2 mt-16 mb-6"
             onClick={async () => {
               dispatch(connect());
               router.push("/cajero");
             }}
           >
-            Conectar Wallet
+            Ingresar
           </button>
           <Link href={"/registro"} className="text-title">
             Regístrate como cajero
