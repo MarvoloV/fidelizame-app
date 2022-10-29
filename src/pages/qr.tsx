@@ -31,9 +31,6 @@ export default function Cajero() {
     <div className="bg-primary min-h-screen">
       <Layout title="Home Page">
         <div className="flex flex-col items-center bg-primary">
-          <p className="pt-12 text-lg font-bold text-blue-800">
-            <span>{result}</span>
-          </p>
           {isViewScan && <video ref={ref} className="p-10" />}
         </div>
       </Layout>
