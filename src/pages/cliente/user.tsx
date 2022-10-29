@@ -76,7 +76,7 @@ const User: NextPage = () => {
         </Link>
         <div className="w-96 flex justify-center pt-5 mt-5">
           <div
-            className={`mx-2 px-2 py-3 text-md border-b-2 border-neutral-800 text-neutral-800 font-medium ${
+            className={`mx-2 px-2 py-3 text-center text-md border-b-2 border-neutral-800 text-neutral-800 font-medium ${
               tabActive === "grant" ? "text-primary border-[#43CBC3]" : ""
             }`}
             onClick={() => setTabActive("grant")}
@@ -84,7 +84,7 @@ const User: NextPage = () => {
             OTORGAR PUNTOS
           </div>
           <div
-            className={`mx-2 px-2 py-3 text-md border-b-2 border-neutral-800 text-neutral-800 font-medium ${
+            className={`mx-2 px-2 py-3 text-center text-md border-b-2 border-neutral-800 text-neutral-800 font-medium ${
               tabActive === "reward" ? "text-primary border-[#43CBC3]" : ""
             }`}
             onClick={() => setTabActive("reward")}
@@ -255,7 +255,7 @@ const User: NextPage = () => {
                         />
                       </figure>
                       <div>
-                        <p className="font-semibold">Aceite primor</p>
+                        <p className="font-semibold">Aceite Primor</p>
                         <p className="font-normal text-xs">S/12.00</p>
                       </div>
                     </div>
@@ -272,7 +272,7 @@ const User: NextPage = () => {
                         />
                       </figure>
                       <div>
-                        <p className="font-semibold">Paneton Donofrio</p>
+                        <p className="font-semibold">Panetón D'onofrio</p>
                         <p className="font-normal text-xs">S/36.00</p>
                       </div>
                     </div>
@@ -299,7 +299,7 @@ const User: NextPage = () => {
 
                 <div className="flex justify-between w-10/12 bg-black/10 px-4 py-4  rounded-3xl">
                   <div>
-                    <p className="font-semibold text-normal">Canjealo por</p>
+                    <p className="font-semibold text-normal">Canjéalo por</p>
                     <p className="font-normal text-sm text-black/60">
                       Corresponde a s/104.00
                     </p>
@@ -339,7 +339,7 @@ const User: NextPage = () => {
                 </p>
                 <p className="font-normal text-center text-sm px-16 mt-5 mb-10">
                   <b>Gustavo</b> por ser cliente Oro, llévate este pack
-                  canjeandolo con <b>500 Ptos</b>
+                  canjeándolo con <b>500 Ptos</b>
                 </p>
                 <div>
                   <Image
@@ -351,7 +351,7 @@ const User: NextPage = () => {
                   />
                 </div>
                 <p className="font-normal text-center text-sm px-16 mt-5 mb-10">
-                Válido hasta el 12/12/22 <br></br> o hasta agotar stock
+                Válido hasta el 12/12/22 <br></br> o hasta agotar stock.
                 </p>
               </div>
             )}
