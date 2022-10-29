@@ -52,7 +52,7 @@ const User: NextPage = () => {
   return (
     <Layout title="Home Page">
       <div className="flex flex-col items-center ">
-        <div className="flex w-full justify-center mt-5 mb-5">
+        <div className="flex w-full justify-center my-7">
           <div>
             <p className="text-left font-bold text-xl text-neutral-800">CAJERO: ADOLFO LLANOS</p>
             <p className="text-xs text-left text-neutral-800">
@@ -62,7 +62,7 @@ const User: NextPage = () => {
         </div>
         <Link
           href={"/qr"}
-          className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:text-neutral-800 hover:border-neutral-800"
+          className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:text-gold hover:border-gold"
         >
           <figure className="pr-2">
             <Image
@@ -153,7 +153,7 @@ const User: NextPage = () => {
                     </div>
                   </div>
                   <button
-                    className={`flex items-center ${
+                    className={`flex items-center hover:bg-gold ${
                       !isLoading
                         ? " bg-primary text-white"
                         : "bg-gray-400 text-black"
@@ -201,7 +201,7 @@ const User: NextPage = () => {
         {tabActive === "reward" && (
           <>
           <div className="w-96">
-            <div className="flex flex-col items-center pt-11 pb-10 rounded-3xl mt-10 mb-12 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+            <div className="pl-4 flex flex-col items-center pt-11 pb-10 rounded-3xl mt-10 mb-12 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
               <figure>
                 <Image
                   src="/images/Bronze-CertCard.png"
@@ -221,16 +221,16 @@ const User: NextPage = () => {
             <div className="flex flex-col items-center pt-11 pb-10 rounded-3xl mt-10 mb-12 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
               <div className="w-full flex justify-center pt-5">
                 <div
-                className={`px-2 text-md font-medium ${
-                  tabActiveClient === "exchange" ? "text-primary" : ""
+                className={`mx-2 px-2 py-3 text-md border-b-2 border-neutral-800 text-neutral-800 font-medium ${
+                  tabActiveClient === "exchange" ? "text-primary border-[#43CBC3]" : ""
                 }`}
                 onClick={() => settabActiveClient("exchange")}
               >
                 CANJEAR PUNTOS
               </div>
               <div
-                className={`px-2 text-md font-medium ${
-                  tabActiveClient === "promotion" ? "text-primary" : ""
+                className={`mx-2 px-2 py-3 text-md border-b-2 border-neutral-800 text-neutral-800 font-medium ${
+                  tabActiveClient === "promotion" ? "text-primary border-[#43CBC3]" : ""
                 }`}
                 onClick={() => settabActiveClient("promotion")}
               >
@@ -307,7 +307,7 @@ const User: NextPage = () => {
                   <p className="font-semibold text-normal">104 Ptos</p>
                 </div>
                 <button
-                  className="flex items-center bg-primary text-white font-semibold px-7 py-3 rounded-md my-10"
+                  className="flex items-center bg-primary text-white font-semibold px-7 py-3 rounded-md my-10 hover:bg-gold"
                   onClick={onClickViewQr}
                 >
                   Canjear puntos
@@ -337,13 +337,22 @@ const User: NextPage = () => {
                 <p className="px-14 text-center text-2xl">
                   Promociones vigentes
                 </p>
-                <p className="font-normal text-center px-16 mt-5 mb-10">
+                <p className="font-normal text-center text-sm px-16 mt-5 mb-10">
                   <b>Gustavo</b> por ser cliente Oro, llévate este pack
                   canjeandolo con <b>500 Ptos</b>
                 </p>
-                {/* <div>
-                  <Image />
-                </div> */}
+                <div>
+                  <Image
+                    src={"/images/promocion-1.jpg"}
+                    width={226}
+                    height={240}
+                    alt="icon point"
+                    className="border-2 border-neutral-400 rounded-xl p-2"
+                  />
+                </div>
+                <p className="font-normal text-center text-sm px-16 mt-5 mb-10">
+                Válido hasta el 12/12/22 <br></br> o hasta agotar stock
+                </p>
               </div>
             )}
             </div>

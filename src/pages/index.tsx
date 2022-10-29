@@ -42,7 +42,7 @@ export default function Home() {
               />
             </figure>
             <button
-              className="text-white bg-neutral-800 rounded-md py-2 px-10 mt-16 mb-6"
+              className="text-white bg-neutral-800 rounded-md py-2 px-10 mt-16 mb-6 hover:bg-gold"
               onClick={async () => {
                 dispatch(connect());
                 router.push("/cajero");
