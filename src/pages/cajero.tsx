@@ -24,6 +24,8 @@ export default function Cajero() {
   return (
     <div>
       <Layout title="Home Page">
+      <div className="flex justify-center">
+        {/*
         <div className="flex flex-col items-center">
           <div className="flex w-full justify-center mt-20 mb-32">
             <figure className="flex items-center">
@@ -39,7 +41,7 @@ export default function Cajero() {
               <p className="text-base">ID: {accountCajero}</p>
             </div>
           </div>
-          {/* 
+           
           <figure className="flex justify-center">
             <Image
               src="/images/Portrait.png"
@@ -48,11 +50,12 @@ export default function Cajero() {
               alt="user"
             />
           </figure>
-          */}
         </div>
-        <div className="flex flex-col items-center pb-20">
-          <p className="font-bold text-4xl mt-7 mb-12">Busca un cliente</p>
-          <p className="text-base px-12 text-center mb-16">
+        */}
+        <div className="flex flex-col justify-center items-center pb-20 w-96">
+        
+          <p className="font-bold text-4xl mt-7 mb-12 text-neutral-800">Busca un cliente</p>
+          <p className="text-base px-12 text-center mb-16 text-neutral-800">
             Escanea el QR del cliente para otorgarle puntos e informarle de sus
             recomenpensas
           </p>
@@ -68,7 +71,7 @@ export default function Cajero() {
 
           <Link
             href={"/qr"}
-            className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white"
+            className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:text-neutral-800 hover:border-neutral-800"
           >
             <figure className="pr-2">
               <Image
@@ -87,6 +90,7 @@ export default function Cajero() {
           <span>Last result:</span>
           <span>{result}</span>
         </p> */}
+      </div>
       </Layout>
       <footer></footer>
     </div>
