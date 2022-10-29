@@ -1,35 +1,43 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import { NextPage } from "next";
 import Image from "next/image";
 import React, { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { Layout } from "../../layouts";
 
-import { useDispatch, useSelector } from "react-redux";
-import { fetchData } from "../../redux/data/dataActions";
+import { useSelector } from "react-redux";
 
 const User: NextPage = () => {
   const [tabActive, setTabActive] = useState("grant");
-  const [cantidad, setCantidad] = useState(120);
+  const [cantidad] = useState(120);
   const [tabActiveClient, settabActiveClient] = useState("exchange");
-  const dispatch = useDispatch();
   const { blockchain, data } = useSelector((state) => state);
-  // console.log({ blockchain, data });
+  const [isLoading, setisLoading] = useState(false);
+  const [successTransaction, setSuccessTransaction] = useState(false);
 
   //-----------------------------------Boton Tx----------------------------------------
 
   //Boton TRANSFERENCIA
   const handleButtonTx = async () => {
-    const accountCajero = blockchain.accountCajero;
+    setSuccessTransaction(false);
+    setisLoading(true);
     const accountUser = blockchain.accountUser;
 
-    // console.log(blockchain.web3.utils)
-    const TxTokes = await blockchain.smartContract
-      .transfer(accountUser, cantidad)
-      .send({ from: accountCajero });
-    await TxTokes;
+    const TxTokes = await blockchain.smartContract.transferTokens(
+      accountUser,
+      cantidad
+    );
+    console.log(
+      "🚀 ~ file: user.tsx ~ line 29 ~ handleButtonTx ~ TxTokes",
+      TxTokes
+    );
+    setisLoading(false);
+    setSuccessTransaction(true);
+    // await TxTokes;
 
-    dispatch(fetchData());
-    setCantidad("");
+    // dispatch(fetchData());
   };
 
   return (
@@ -147,8 +155,12 @@ const User: NextPage = () => {
                 </div>
 
                 <button
-                  className="flex items-center bg-primary text-white font-semibold px-1 rounded-md h-10 mt-1"
-                  disabled={false}
+                  className={`flex items-center ${
+                    !isLoading
+                      ? " bg-primary text-white"
+                      : "bg-gray-400 text-black"
+                  } font-semibold px-1 rounded-md h-10 mt-1`}
+                  disabled={isLoading}
                   onClick={handleButtonTx}
                 >
                   Otorgar Puntos
@@ -156,30 +168,34 @@ const User: NextPage = () => {
               </div>
             </div>
             <div className="m-5">
-              <RotatingLines
-                strokeColor="Teal"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="96"
-                visible={true}
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <figure>
-                <Image
-                  src="/images/sending-message.svg"
-                  width={150}
-                  height={126}
-                  alt="icon loading"
+              {isLoading && (
+                <RotatingLines
+                  strokeColor="Teal"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="96"
+                  visible={true}
                 />
-              </figure>
-              <p className="text-base font-semibold text-center">
-                !Enhorabuena!
-              </p>
-              <p className="px-10 pt-3 pb-10 text-center">
-                Fueron otorgados <b>120 puntos</b> a la billetera de Gustavo
-              </p>
+              )}
             </div>
+            {successTransaction && (
+              <div className="flex flex-col items-center">
+                <figure>
+                  <Image
+                    src="/images/sending-message.svg"
+                    width={150}
+                    height={126}
+                    alt="icon loading"
+                  />
+                </figure>
+                <p className="text-base font-semibold text-center">
+                  !Enhorabuena!
+                </p>
+                <p className="px-10 pt-3 pb-10 text-center">
+                  Fueron otorgados <b>120 puntos</b> a la billetera de Gustavo
+                </p>
+              </div>
+            )}
           </div>
         )}
         {tabActive === "reward" && (

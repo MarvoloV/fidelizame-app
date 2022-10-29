@@ -24,7 +24,6 @@ export const fetchData = () => {
   return async (dispatch) => {
     dispatch(fetchDataRequest());
     try {
-      console.log(store.getState().blockchain.accountCajero);
       // const tokensContract = await store.getState().blockchain.smartContract.methods.TokensDisponibles().call();
       const tokensCajero = await store
         .getState()
@@ -39,7 +38,7 @@ export const fetchData = () => {
         })
       );
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       dispatch(fetchDataFailed("Could not load data from contract."));
     }
   };

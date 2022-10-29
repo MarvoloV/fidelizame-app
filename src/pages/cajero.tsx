@@ -1,25 +1,15 @@
-import { useState } from "react";
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+// @ts-ignore
+
 import { Layout } from "../layouts";
-import { useZxing } from "react-zxing";
 import Image from "next/image";
-import { useDispatch, useSelector } from "react-redux";
-import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+
 import Link from "next/link";
 
 export default function Cajero() {
-  const dispatch = useDispatch();
-  const { accountCajero } = useSelector((state) => state.blockchain);
-  console.log(
-    "🚀 ~ file: cajero.tsx ~ line 12 ~ Cajero ~ accountCajero",
-    accountCajero
-  );
-  const router = useRouter();
-  const [result, setResult] = useState("No result");
-  const { ref } = useZxing({
-    onResult(result) {
-      setResult(result.getText());
-    },
-  });
+  const { blockchain } = useSelector((state) => state);
 
   return (
     <div>
@@ -36,7 +26,7 @@ export default function Cajero() {
             </figure>
             <div className="pl-5">
               <p className="font-bold text-xl">CAJERO: ADOLFO LLANOS</p>
-              <p className="text-base">ID: {accountCajero}</p>
+              <p className="text-base">ID: {blockchain.accountCajero}</p>
             </div>
           </div>
           {/* 

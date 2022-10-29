@@ -1,8 +1,8 @@
 const initialState = {
   loading: false,
   // web3: null,
-  accountCajero: null,
-  accountUser: null,
+  accountCajero: "",
+  accountUser: "",
   smartContract: null,
   // owner:'',
   errorMsg: "",
@@ -31,9 +31,8 @@ const blockchainReducer = (state = initialState, action) => {
         errorMsg: action.payload,
       };
     case "SAVE_USER":
-      console.log("action", action.payload);
       return {
-        ...initialState,
+        ...state,
         loading: false,
         accountUser: action.payload,
       };
