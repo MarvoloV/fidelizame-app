@@ -30,11 +30,6 @@ export default function Cajero() {
       <Layout title="Home Page">
         <div className="flex flex-col items-center">
           {isViewScan && <video ref={ref} className="p-10" />}
-
-          <p>
-            <span>Last result:</span>
-            <span>{result}</span>
-          </p>
         </div>
       </Layout>
       <footer></footer>
