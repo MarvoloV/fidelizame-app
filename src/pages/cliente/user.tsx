@@ -139,7 +139,6 @@ const User: NextPage = () => {
                 </p>
               </div>
             </div>
-<<<<<<< HEAD
             <div className="flex flex-col items-center pt-11 rounded-3xl mt-10 mb-12 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
               <div className="flex items-center">
                 {/* <p className="font-normal text-sm text-black/50">
@@ -164,9 +163,6 @@ const User: NextPage = () => {
                 </p>
               </div>
             </div> */}
-=======
-            <div className="flex flex-col items-center pt-11 rounded-lg mt-10 mb-20 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
->>>>>>> eaa0e081fcf261d27dc799e5ab5af64d1ed5f76d
               <div>
                 <p className="text-center text-xl font-bold">
                   Compra de hoy 29/10/22
@@ -189,17 +185,8 @@ const User: NextPage = () => {
                     </div>
                   </div>
                   <button
-<<<<<<< HEAD
                     className="flex items-center bg-primary text-white font-semibold px-3 rounded-md h-10 mt-1"
                     disabled={false}
-=======
-                    className={`flex items-center ${
-                      !isLoading
-                        ? " bg-primary text-white"
-                        : "bg-gray-400 text-black"
-                    } font-semibold px-1 rounded-md h-10 mt-1`}
-                    disabled={isLoading}
->>>>>>> eaa0e081fcf261d27dc799e5ab5af64d1ed5f76d
                     onClick={handleButtonTx}
                   >
                     Otorgar Puntos
@@ -367,31 +354,11 @@ const User: NextPage = () => {
                     </p>
                   </div>
                 </div>
-<<<<<<< HEAD
               )}
               {tabActiveClient === "promotion" && (
                 <div className="flex flex-col items-center font-bold text-lg mt-10">
                   <p className="px-14 text-center text-2xl">
                     Promociones vigentes
-=======
-                <button
-                  className="flex items-center bg-primary text-white font-semibold px-7 py-3 rounded-md my-10"
-                  onClick={onClickViewQr}
-                >
-                  Canjear puntos
-                </button>
-                <div className="flex flex-col items-center">
-                  <figure>
-                    <Image
-                      src="/images/sending-message.svg"
-                      width={150}
-                      height={126}
-                      alt="icon loading"
-                    />
-                  </figure>
-                  <p className="text-base font-semibold text-center">
-                    !Enhorabuena!
->>>>>>> eaa0e081fcf261d27dc799e5ab5af64d1ed5f76d
                   </p>
                   <p className="font-normal text-center px-16 mt-5 mb-10">
                     <b>Gustavo</b> por ser cliente Oro, llévate este pack
