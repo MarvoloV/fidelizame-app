@@ -11,7 +11,7 @@ import Link from "next/link";
 export default function Cajero() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [result, setResult] = useState("No result");
+  const [result, setResult] = useState("Escaneando QR...");
   const [isViewScan, setisViewScan] = useState(true);
   const { ref } = useZxing({
     onResult(result) {
@@ -31,7 +31,7 @@ export default function Cajero() {
           {isViewScan && <video ref={ref} className="p-10" />}
 
           <p>
-            <span>Last result:</span>
+            <span></span>
             <span>{result}</span>
           </p>
           <Link
