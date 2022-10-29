@@ -50,9 +50,11 @@ export default function Home() {
             >
               Ingresar
             </button>
+            {/* 
             <Link href={"/registro"} className="text-title underline font-semibold">
               Regístrate como cajero
             </Link>
+            */}
           </div>
 
           {/* <video ref={ref} />

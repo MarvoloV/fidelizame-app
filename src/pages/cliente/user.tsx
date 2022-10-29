@@ -54,15 +54,15 @@ const User: NextPage = () => {
       <div className="flex flex-col items-center ">
         <div className="flex w-full justify-center mt-5 mb-5">
           <div>
-            <p className="font-bold text-xl">CAJERO: ADOLFO LLANOS</p>
-            <p className="text-xs text-center">
+            <p className="text-left font-bold text-xl text-neutral-800">CAJERO: ADOLFO LLANOS</p>
+            <p className="text-xs text-left text-neutral-800">
               ID: {blockchain.accountCajero}
             </p>
           </div>
         </div>
         <Link
           href={"/qr"}
-          className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+          className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:text-neutral-800 hover:border-neutral-800"
         >
           <figure className="pr-2">
             <Image
@@ -74,18 +74,18 @@ const User: NextPage = () => {
           </figure>
           Escanear Cliente
         </Link>
-        <div className="w-full flex justify-center pt-5 mt-5">
+        <div className="w-96 flex justify-center pt-5 mt-5">
           <div
-            className={`px-2 text-md font-medium ${
-              tabActive === "grant" ? "text-primary" : ""
+            className={`mx-2 px-2 py-3 text-md border-b-2 border-neutral-800 text-neutral-800 font-medium ${
+              tabActive === "grant" ? "text-primary border-[#43CBC3]" : ""
             }`}
             onClick={() => setTabActive("grant")}
           >
             OTORGAR PUNTOS
           </div>
           <div
-            className={`px-2 text-md font-medium ${
-              tabActive === "reward" ? "text-primary" : ""
+            className={`mx-2 px-2 py-3 text-md border-b-2 border-neutral-800 text-neutral-800 font-medium ${
+              tabActive === "reward" ? "text-primary border-[#43CBC3]" : ""
             }`}
             onClick={() => setTabActive("reward")}
           >
@@ -94,8 +94,8 @@ const User: NextPage = () => {
         </div>
         {tabActive === "grant" && (
           <div>
-            <div className="flex flex-col items-center pt-11 pb-6 rounded-lg mt-10 mb-20 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
-              <figure>
+            <div className="flex flex-col items-center pt-11 pb-6 rounded-3xl mt-10 mb-12 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <figure className="pl-4">
                 <Image
                   src="/images/Bronze-CertCard.png"
                   width={80}
@@ -113,10 +113,10 @@ const User: NextPage = () => {
               <p className="font-bold text-base mt-4">Fecha de alta</p>
               <p className="font-normal text-sm">10 Mayo 2022</p>
               <div className="h-px w-72 bg-black/10 mt-10 mb-10" />
-              <p className="font-bold text-xl">
-                Puntos Disponibles a distribuir
+              <p className="font-bold text-xl mb-4">
+                Puntos disponibles a distribuir
               </p>
-              <div className="flex  items-center ">
+              <div className="flex items-center ">
                 <figure>
                   <Image
                     src="/images/Medals-gold.svg"
@@ -125,12 +125,12 @@ const User: NextPage = () => {
                     alt="point"
                   />
                 </figure>
-                <p className="font-semibold text-lg">
+                <p className="font-semibold text-lg pb-5">
                   {parseInt(Number(data.tokensCajero)) / 100} Pts
                 </p>
               </div>
             </div>
-            <div className="flex flex-col items-center pt-11 rounded-lg mt-10 mb-20 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+            <div className="flex flex-col items-center pt-11 pb-5 rounded-3xl mt-10 mb-20 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
               <div>
                 <p className="text-center text-xl font-bold">
                   Compra de hoy 29/10/22
@@ -157,7 +157,7 @@ const User: NextPage = () => {
                       !isLoading
                         ? " bg-primary text-white"
                         : "bg-gray-400 text-black"
-                    } font-semibold px-1 rounded-md h-10 mt-1`}
+                    } font-semibold px-3 rounded-md h-10 mt-1`}
                     disabled={isLoading}
                     onClick={handleButtonTx}
                   >
@@ -200,7 +200,8 @@ const User: NextPage = () => {
         )}
         {tabActive === "reward" && (
           <>
-            <div className="flex flex-col items-center pt-11 ">
+          <div className="w-96">
+            <div className="flex flex-col items-center pt-11 pb-10 rounded-3xl mt-10 mb-12 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
               <figure>
                 <Image
                   src="/images/Bronze-CertCard.png"
@@ -217,8 +218,9 @@ const User: NextPage = () => {
               <p className="font-bold text-base mt-4">Fecha de alta</p>
               <p className="font-normal text-sm">10 Mayo 2022</p>
             </div>
-            <div className="w-full flex justify-center pt-5">
-              <div
+            <div className="flex flex-col items-center pt-11 pb-10 rounded-3xl mt-10 mb-12 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
+              <div className="w-full flex justify-center pt-5">
+                <div
                 className={`px-2 text-md font-medium ${
                   tabActiveClient === "exchange" ? "text-primary" : ""
                 }`}
@@ -310,6 +312,7 @@ const User: NextPage = () => {
                 >
                   Canjear puntos
                 </button>
+                {/* 
                 <div className="flex flex-col items-center">
                   <figure>
                     <Image
@@ -326,6 +329,7 @@ const User: NextPage = () => {
                     Fueron gastados <b>120 puntos</b> de la billetera de Gustavo
                   </p>
                 </div>
+                */}
               </div>
             )}
             {tabActiveClient === "promotion" && (
@@ -342,6 +346,8 @@ const User: NextPage = () => {
                 </div> */}
               </div>
             )}
+            </div>
+          </div>
           </>
         )}
       </div>
