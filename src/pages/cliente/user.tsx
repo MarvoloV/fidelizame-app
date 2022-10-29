@@ -67,7 +67,7 @@ const User: NextPage = () => {
             <p className="text-left font-bold text-xl text-neutral-800">
               CAJERO: ADOLFO LLANOS
             </p>
-            <p className="text-xs text-left text-neutral-800">
+            <p className="text-xs text-center text-neutral-800">
               ID: {blockchain.accountCajero}
             </p>
           </div>
