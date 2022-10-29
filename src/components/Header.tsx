@@ -3,10 +3,10 @@ import React from "react";
 
 export const Header = () => {
   return (
-    <header className="flex w-full justify-center px-5 py-4 bg-white">
+    <header className="flex w-full justify-center px-5 py-6 bg-white">
       <div className="flex items-center">
-        <Image src="/images/fidelizame.svg" alt="logo" width={32} height={25} />
-        <h1 className="pl-4 text-lg decoration-blue-500">Fidelizame</h1>
+        <Image src="/images/fidelizame.svg" alt="logo" width={45} height={30} />
+        <h1 className="pl-4 text-lg text-indigo-900">Fidelizame</h1>
       </div>
       {/* <button
         className="text-white bg-primary rounded-md p-2"
