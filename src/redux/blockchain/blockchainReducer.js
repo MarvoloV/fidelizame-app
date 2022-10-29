@@ -33,7 +33,7 @@ const blockchainReducer = (state = initialState, action) => {
     case "SAVE_USER":
       console.log("action", action.payload);
       return {
-        ...initialState,
+        ...state,
         loading: false,
         accountUser: action.payload,
       };

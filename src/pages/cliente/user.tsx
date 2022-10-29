@@ -43,7 +43,7 @@ const User: NextPage = () => {
             </p>
           </div>
         </div>
-        <button className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white">
+        <button className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
           <figure className="pr-2">
             <Image
               src="/images/ion_qr-code-sharp.svg"
@@ -54,7 +54,7 @@ const User: NextPage = () => {
           </figure>
           Escanear Cliente
         </button>
-        <div className="w-full flex justify-center pt-5">
+        <div className="w-full flex justify-center pt-5 mt-5">
           <div
             className={`px-2 text-md font-medium ${
               tabActive === "grant" ? "text-primary" : ""
@@ -73,40 +73,44 @@ const User: NextPage = () => {
           </div>
         </div>
         {tabActive === "grant" && (
-          <div className="flex flex-col items-center pt-11 ">
-            <figure>
-              <Image
-                src="/images/Bronze-CertCard.png"
-                width={80}
-                height={80}
-                alt="medalla"
-              />
-            </figure>
-            <h2 className="text-2xl font-bold">Gustavo Medrano</h2>
-            <p className="text-sm font-normal">ID: {blockchain.accountUser}</p>
-            <p className="text-gold rounded-xl bg-gold/10 px-4 py-2 mt-3 font-semibold ">
-              Cliente Oro
-            </p>
-            <p className="font-bold text-base mt-4">Fecha de alta</p>
-            <p className="font-normal text-sm">10 Mayo 2022</p>
-            <div className="h-px w-72 bg-black/10 mt-10 mb-10" />
-            <p className="font-bold text-xl">Puntos Disponibles a Distruir</p>
-            <div className="flex  items-center ">
+          <div>
+            <div className="flex flex-col items-center pt-11 pb-6 rounded-lg mt-10 mb-20 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
               <figure>
                 <Image
-                  src="/images/Medals-gold.svg"
-                  width={70}
-                  height={70}
-                  alt="point"
+                  src="/images/Bronze-CertCard.png"
+                  width={80}
+                  height={80}
+                  alt="medalla"
                 />
               </figure>
-              {/* <p className="font-semibold text-lg">{data.tokensCajero} Pts</p> */}
+              <h2 className="text-2xl font-bold">Gustavo Medrano</h2>
+              <p className="text-sm font-normal">ID: {blockchain.accountUser}</p>
+              <p className="text-gold rounded-xl bg-gold/10 px-4 py-2 mt-3 font-semibold ">
+                Cliente Oro
+              </p>
+              <p className="font-bold text-base mt-4">Fecha de alta</p>
+              <p className="font-normal text-sm">10 Mayo 2022</p>
+              <div className="h-px w-72 bg-black/10 mt-10 mb-10" />
+              <p className="font-bold text-xl">Puntos Disponibles a distribuir</p>
+              <div className="flex  items-center ">
+                <figure>
+                  <Image
+                    src="/images/Medals-gold.svg"
+                    width={70}
+                    height={70}
+                    alt="point"
+                  />
+                </figure>
+                {/* <p className="font-semibold text-lg">{data.tokensCajero} Pts</p> */}
+              </div>
+            </div>
+            <div className="flex flex-col items-center pt-11 rounded-lg mt-10 mb-20 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]">
               <div className="flex items-center">
                 {/* <p className="font-normal text-sm text-black/50">
                   Hasta 23/10/2022
                 </p> */}
               </div>
-            </div>
+            
             {/* <p className="font-bold text-xl mt-5">Puntos utilizados</p>
             <div className="flex mt-5">
               <figure>
@@ -124,61 +128,62 @@ const User: NextPage = () => {
                 </p>
               </div>
             </div> */}
-            <div>
-              <p className="text-center text-xl font-bold">
-                Compra de hoy 29/10/22
-              </p>
-              <div className="flex mt-5 w-96 justify-around">
-                <div className="flex">
-                  <figure>
-                    <Image
-                      src="/images/Medals-gold.svg"
-                      width={70}
-                      height={70}
-                      alt="point"
-                    />
-                  </figure>
-                  <div>
-                    <p className="font-semibold text-lg">120 Soles</p>
-                    <p className="font-normal text-sm text-black/50">
-                      120 Puntos
-                    </p>
+              <div>
+                <p className="text-center text-xl font-bold">
+                  Compra de hoy 29/10/22
+                </p>
+                <div className="flex mt-5 w-96 justify-around">
+                  <div className="flex">
+                    <figure>
+                      <Image
+                        src="/images/Medals-gold.svg"
+                        width={70}
+                        height={70}
+                        alt="point"
+                      />
+                    </figure>
+                    <div>
+                      <p className="font-semibold text-lg">120 Soles</p>
+                      <p className="font-normal text-sm text-black/50">
+                        120 Puntos
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <button
-                  className="flex items-center bg-primary text-white font-semibold px-1 rounded-md h-10 mt-1"
-                  disabled={false}
-                  onClick={handleButtonTx}
-                >
-                  Otorgar Puntos
-                </button>
+                  <button
+                    className="flex items-center bg-primary text-white font-semibold px-1 rounded-md h-10 mt-1"
+                    disabled={false}
+                    onClick={handleButtonTx}
+                  >
+                    Otorgar Puntos
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className="m-5">
-              <RotatingLines
-                strokeColor="Teal"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="96"
-                visible={true}
-              />
-            </div>
-            <div className="flex flex-col items-center">
-              <figure>
-                <Image
-                  src="/images/sending-message.svg"
-                  width={150}
-                  height={126}
-                  alt="icon loading"
+              <div className="m-5">
+                <RotatingLines
+                  strokeColor="Teal"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="96"
+                  visible={true}
                 />
-              </figure>
-              <p className="text-base font-semibold text-center">
-                !Enhorabuena!
-              </p>
-              <p className="px-10 pt-3 pb-10 text-center">
-                Fueron otorgados <b>120 puntos</b> a la billetera de Gustavo
-              </p>
+              </div>
+              <div className="flex flex-col items-center">
+                <figure>
+                  <Image
+                    src="/images/sending-message.svg"
+                    width={150}
+                    height={126}
+                    alt="icon loading"
+                  />
+                </figure>
+                <p className="text-base font-semibold text-center">
+                  !Enhorabuena!
+                </p>
+                <p className="px-10 pt-3 pb-10 text-center">
+                  Fueron otorgados <b>120 puntos</b> a la billetera de Gustavo
+                </p>
+              </div>
             </div>
           </div>
         )}
