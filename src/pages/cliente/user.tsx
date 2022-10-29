@@ -5,8 +5,10 @@ import { NextPage } from "next";
 import Image from "next/image";
 import React, { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
+import QRCode from "react-qr-code";
 import { Layout } from "../../layouts";
-
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 import { useSelector } from "react-redux";
 
 const User: NextPage = () => {
@@ -16,7 +18,17 @@ const User: NextPage = () => {
   const { blockchain, data } = useSelector((state) => state);
   const [isLoading, setisLoading] = useState(false);
   const [successTransaction, setSuccessTransaction] = useState(false);
-
+  const onClickViewQr = () => {
+    const MySwal = withReactContent(Swal);
+    MySwal.fire({
+      html: (
+        <div className="flex justify-center pt-10">
+          <QRCode value={blockchain.accountCajero} width={40} height={40} />
+        </div>
+      ),
+      confirmButtonColor: "#43CBC3",
+    });
+  };
   //-----------------------------------Boton Tx----------------------------------------
 
   //Boton TRANSFERENCIA
@@ -28,10 +40,6 @@ const User: NextPage = () => {
     const TxTokes = await blockchain.smartContract.transferTokens(
       accountUser,
       cantidad
-    );
-    console.log(
-      "🚀 ~ file: user.tsx ~ line 29 ~ handleButtonTx ~ TxTokes",
-      TxTokes
     );
     setisLoading(false);
     setSuccessTransaction(true);
@@ -152,6 +160,36 @@ const User: NextPage = () => {
                     Otorgar Puntos
                   </button>
                 </div>
+                {isLoading && (
+                  <div className="m-5">
+                    <RotatingLines
+                      strokeColor="Teal"
+                      strokeWidth="5"
+                      animationDuration="0.75"
+                      width="96"
+                      visible={true}
+                    />
+                  </div>
+                )}
+                {successTransaction && (
+                  <div className="flex flex-col items-center">
+                    <figure>
+                      <Image
+                        src="/images/sending-message.svg"
+                        width={150}
+                        height={126}
+                        alt="icon loading"
+                      />
+                    </figure>
+                    <p className="text-base font-semibold text-center">
+                      !Enhorabuena!
+                    </p>
+                    <p className="px-10 pt-3 pb-10 text-center">
+                      Fueron otorgados <b>120 puntos</b> a la billetera de
+                      Gustavo
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -262,7 +300,10 @@ const User: NextPage = () => {
                   </div>
                   <p className="font-semibold text-normal">104 Ptos</p>
                 </div>
-                <button className="flex items-center bg-primary text-white font-semibold px-7 py-3 rounded-md my-10">
+                <button
+                  className="flex items-center bg-primary text-white font-semibold px-7 py-3 rounded-md my-10"
+                  onClick={onClickViewQr}
+                >
                   Canjear puntos
                 </button>
                 <div className="flex flex-col items-center">

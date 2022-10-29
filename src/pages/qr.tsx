@@ -30,28 +30,6 @@ export default function Cajero() {
       <Layout title="Home Page">
         <div className="flex flex-col items-center">
           {isViewScan && <video ref={ref} className="p-10" />}
-<<<<<<< HEAD
-=======
-
-          <p>
-            <span></span>
-            <span>{result}</span>
-          </p>
-          <Link
-            href={"/cliente/user"}
-            className="w-48 flex items-center justify-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white"
-          >
-            <figure className="pr-2">
-              <Image
-                src="/images/ion_qr-code-sharp.svg"
-                width={18}
-                height={18}
-                alt="qr icon"
-              />
-            </figure>
-            <p> Simular QR</p>
-          </Link>
->>>>>>> 1c4b3caea47759e9d5f39aa47c6595a17cf13491
         </div>
       </Layout>
       <footer></footer>
