@@ -10,6 +10,7 @@ import { Layout } from "../../layouts";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 
 const User: NextPage = () => {
   const [tabActive, setTabActive] = useState("grant");
@@ -59,7 +60,10 @@ const User: NextPage = () => {
             </p>
           </div>
         </div>
-        <button className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+        <Link
+          href={"/qr"}
+          className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:bg-primary hover:text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+        >
           <figure className="pr-2">
             <Image
               src="/images/ion_qr-code-sharp.svg"
@@ -69,7 +73,7 @@ const User: NextPage = () => {
             />
           </figure>
           Escanear Cliente
-        </button>
+        </Link>
         <div className="w-full flex justify-center pt-5 mt-5">
           <div
             className={`px-2 text-md font-medium ${
@@ -161,7 +165,7 @@ const User: NextPage = () => {
                   </button>
                 </div>
                 {isLoading && (
-                  <div className="m-5">
+                  <div className="m-5 flex flex-col items-center">
                     <RotatingLines
                       strokeColor="Teal"
                       strokeWidth="5"

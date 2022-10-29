@@ -19,46 +19,48 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout title="Home Page">
-        <div className="flex flex-col items-center ">
-          <div className="flex w-full justify-center mt-12">
-            <h1 className="text-4xl font-bold pr-2">Hola</h1>
-            <Image
-              src="/images/emojione_hand.png"
-              width={30}
-              height={30}
-              alt="emoji de mano"
-            />
+        <div className="flex justify-center">
+          <div className="flex flex-col items-center w-96">
+            <div className="flex w-full justify-center mt-12">
+              <h1 className="text-neutral-800 text-4xl font-bold pr-2">Hola</h1>
+              <Image
+                src="/images/emojione_hand.png"
+                width={30}
+                height={30}
+                alt="emoji de mano"
+              />
+            </div>
+            <p className="text-neutral-800 font-medium mt-9 px-10 text-lg text-center mb-16">
+              Inicia sesión para empezar a atender a nuestros clientes
+            </p>
+            <figure className="flex justify-center">
+              <Image
+                src="/images/Portrait.png"
+                width={210}
+                height={241}
+                alt="user"
+              />
+            </figure>
+            <button
+              className="text-white bg-neutral-800 rounded-md py-2 px-10 mt-16 mb-6"
+              onClick={async () => {
+                dispatch(connect());
+                router.push("/cajero");
+              }}
+            >
+              Ingresar
+            </button>
+            <Link href={"/registro"} className="text-title underline font-semibold">
+              Regístrate como cajero
+            </Link>
           </div>
-          <p className="mt-9  px-10 text-center mb-16">
-            Inicia sesión para empezar a atender a nuestros clientes
-          </p>
-          <figure className="flex justify-center">
-            <Image
-              src="/images/Portrait.png"
-              width={210}
-              height={241}
-              alt="user"
-            />
-          </figure>
-          <button
-            className="text-white bg-black rounded-md p-2 mt-16 mb-6"
-            onClick={async () => {
-              dispatch(connect());
-              router.push("/cajero");
-            }}
-          >
-            Ingresar
-          </button>
-          <Link href={"/registro"} className="text-title">
-            Regístrate como cajero
-          </Link>
-        </div>
 
-        {/* <video ref={ref} />
-        <p>
-          <span>Last result:</span>
-          <span>{result}</span>
-        </p> */}
+          {/* <video ref={ref} />
+          <p>
+            <span>Last result:</span>
+            <span>{result}</span>
+          </p> */}
+        </div>
       </Layout>
       <footer></footer>
     </div>

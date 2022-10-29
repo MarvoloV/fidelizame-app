@@ -12,7 +12,9 @@ import { useRouter } from "next/router";
 export default function Cajero() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [result, setResult] = useState("Escaneando QR...");
+  const [result, setResult] = useState(
+    "Escaneando el código QR del cliente..."
+  );
   const [isViewScan, setisViewScan] = useState(true);
   const { ref } = useZxing({
     onResult(result) {
@@ -26,13 +28,15 @@ export default function Cajero() {
   });
 
   return (
-    <div>
+    <div className="bg-primary min-h-screen">
       <Layout title="Home Page">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center bg-primary">
+          <p className="pt-12 text-lg font-bold text-blue-800">
+            <span>{result}</span>
+          </p>
           {isViewScan && <video ref={ref} className="p-10" />}
         </div>
       </Layout>
-      <footer></footer>
     </div>
   );
 }
