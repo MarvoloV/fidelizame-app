@@ -61,7 +61,7 @@ export default function Cajero() {
 
           <Link
             href={"/qr"}
-            className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:text-neutral-800 hover:border-neutral-800"
+            className="flex items-center border-2 border-primary text-primary font-semibold p-2 rounded-md hover:text-gold hover:border-gold"
           >
             <figure className="pr-2">
               <Image

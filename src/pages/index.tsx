@@ -42,7 +42,7 @@ export default function Home() {
               />
             </figure>
             <button
-              className="text-white bg-neutral-800 rounded-md py-2 px-10 mt-16 mb-6"
+              className="text-white bg-neutral-800 rounded-md py-2 px-10 mt-16 mb-6 hover:bg-gold"
               onClick={async () => {
                 dispatch(connect());
                 router.push("/cajero");
@@ -50,9 +50,11 @@ export default function Home() {
             >
               Ingresar
             </button>
+            {/* 
             <Link href={"/registro"} className="text-title underline font-semibold">
               Regístrate como cajero
             </Link>
+            */}
           </div>
 
           {/* <video ref={ref} />
